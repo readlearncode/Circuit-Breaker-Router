@@ -1,0 +1,423 @@
+{
+  "name": "Circuit Breaker Simple",
+  "description": "This is the main class of an extension, is the entry point from which configurations, connection providers, operations and sources are going to be declared.",
+  "version": "1.0.39-SNAPSHOT",
+  "vendor": "Mulesoft",
+  "category": "COMMUNITY",
+  "xmlDsl": {
+    "prefix": "circuit-breaker-simple",
+    "namespace": "http://www.mulesoft.org/schema/mule/circuit-breaker-simple",
+    "schemaLocation": "http://www.mulesoft.org/schema/mule/circuit-breaker-simple/current/mule-circuit-breaker-simple.xsd",
+    "schemaVersion": "1.0.39-SNAPSHOT",
+    "xsdFileName": "mule-circuit-breaker-simple.xsd"
+  },
+  "resources": [],
+  "subTypes": [],
+  "privilegedPackages": [],
+  "privilegedArtifacts": [],
+  "externalLibraries": [],
+  "importedTypes": [],
+  "configurations": [
+    {
+      "stereotype": {
+        "type": "CONFIG",
+        "namespace": "CIRCUIT-BREAKER-SIMPLE",
+        "parent": {
+          "type": "MODULE_CONFIG",
+          "namespace": "MULE"
+        }
+      },
+      "parameterGroupModels": [
+        {
+          "parameters": [
+            {
+              "type": {
+                "format": "java",
+                "type": "Object",
+                "annotations": {
+                  "typeId": "org.mule.runtime.extension.api.runtime.ExpirationPolicy",
+                  "description": {
+                    "value": "Configures the minimum amount of time that a dynamic configuration instance can remain idle before the runtime considers it eligible for expiration. This does not mean that the platform will expire the instance at the exact moment that it becomes eligible. The runtime will actually purge the instances when it sees it fit."
+                  },
+                  "typeDsl": {
+                    "allowInlineDefinition": true,
+                    "allowTopLevelDefinition": false
+                  }
+                },
+                "fields": [
+                  {
+                    "key": {
+                      "name": "maxIdleTime"
+                    },
+                    "model": {
+                      "type": "Number",
+                      "annotations": {
+                        "int": {},
+                        "classInformation": {
+                          "classname": "java.lang.Long",
+                          "hasDefaultConstructor": false,
+                          "isInterface": false,
+                          "isInstantiable": false,
+                          "isAbstract": false,
+                          "isFinal": true,
+                          "implementedInterfaces": [
+                            "java.lang.Comparable"
+                          ],
+                          "parent": "java.lang.Number",
+                          "genericTypes": [],
+                          "isMap": false
+                        },
+                        "default": "5"
+                      }
+                    },
+                    "annotations": {
+                      "description": {
+                        "value": "A scalar time value for the maximum amount of time a dynamic configuration instance should be allowed to be idle before it\u0027s considered eligible for expiration"
+                      },
+                      "expressionSupport": {
+                        "value": "NOT_SUPPORTED"
+                      }
+                    }
+                  },
+                  {
+                    "key": {
+                      "name": "timeUnit"
+                    },
+                    "model": {
+                      "type": "String",
+                      "annotations": {
+                        "enum": {
+                          "type": "[Ljava.lang.String;",
+                          "values": [
+                            "NANOSECONDS",
+                            "MICROSECONDS",
+                            "MILLISECONDS",
+                            "SECONDS",
+                            "MINUTES",
+                            "HOURS",
+                            "DAYS"
+                          ]
+                        },
+                        "default": "MINUTES"
+                      }
+                    },
+                    "annotations": {
+                      "description": {
+                        "value": "A time unit that qualifies the maxIdleTime attribute"
+                      },
+                      "expressionSupport": {
+                        "value": "NOT_SUPPORTED"
+                      }
+                    }
+                  }
+                ]
+              },
+              "hasDynamicType": false,
+              "required": false,
+              "isConfigOverride": false,
+              "expressionSupport": "NOT_SUPPORTED",
+              "role": "BEHAVIOUR",
+              "dslConfiguration": {
+                "allowsInlineDefinition": true,
+                "allowsReferences": false,
+                "allowTopLevelDefinition": false
+              },
+              "layoutModel": {
+                "password": false,
+                "text": false,
+                "query": false,
+                "order": 4,
+                "tabName": "Advanced"
+              },
+              "allowedStereotypeModels": [],
+              "name": "expirationPolicy",
+              "description": "Configures the minimum amount of time that a dynamic configuration instance can remain idle before the runtime considers it eligible for expiration. This does not mean that the platform will expire the instance at the exact moment that it becomes eligible. The runtime will actually purge the instances when it sees it fit.",
+              "modelProperties": {
+                "org.mule.runtime.extension.api.property.QNameModelProperty": {
+                  "value": {
+                    "namespaceURI": "http://www.mulesoft.org/schema/mule/core",
+                    "localPart": "expiration-policy",
+                    "prefix": "mule"
+                  }
+                },
+                "org.mule.runtime.extension.api.property.InfrastructureParameterModelProperty": {
+                  "sequence": 4
+                }
+              }
+            }
+          ],
+          "exclusiveParametersModels": [],
+          "layoutModel": {
+            "password": false,
+            "text": false,
+            "query": false,
+            "order": 0
+          },
+          "showInDsl": false,
+          "name": "General",
+          "description": "",
+          "modelProperties": {}
+        },
+        {
+          "parameters": [
+            {
+              "type": {
+                "format": "java",
+                "type": "Number",
+                "annotations": {
+                  "classInformation": {
+                    "classname": "java.lang.Integer",
+                    "hasDefaultConstructor": false,
+                    "isInterface": false,
+                    "isInstantiable": false,
+                    "isAbstract": false,
+                    "isFinal": true,
+                    "implementedInterfaces": [
+                      "java.lang.Comparable"
+                    ],
+                    "parent": "java.lang.Number",
+                    "genericTypes": [],
+                    "isMap": false
+                  },
+                  "int": {}
+                }
+              },
+              "hasDynamicType": false,
+              "required": false,
+              "isConfigOverride": false,
+              "expressionSupport": "SUPPORTED",
+              "defaultValue": "2",
+              "role": "BEHAVIOUR",
+              "dslConfiguration": {
+                "allowsInlineDefinition": true,
+                "allowsReferences": true,
+                "allowTopLevelDefinition": false
+              },
+              "layoutModel": {
+                "password": false,
+                "text": false,
+                "query": false,
+                "order": 1
+              },
+              "allowedStereotypeModels": [],
+              "name": "closedErrorThreshold",
+              "displayModel": {
+                "displayName": "Closed error threshold"
+              },
+              "description": "",
+              "modelProperties": {}
+            },
+            {
+              "type": {
+                "format": "java",
+                "type": "Number",
+                "annotations": {
+                  "classInformation": {
+                    "classname": "java.lang.Integer",
+                    "hasDefaultConstructor": false,
+                    "isInterface": false,
+                    "isInstantiable": false,
+                    "isAbstract": false,
+                    "isFinal": true,
+                    "implementedInterfaces": [
+                      "java.lang.Comparable"
+                    ],
+                    "parent": "java.lang.Number",
+                    "genericTypes": [],
+                    "isMap": false
+                  },
+                  "int": {}
+                }
+              },
+              "hasDynamicType": false,
+              "required": false,
+              "isConfigOverride": false,
+              "expressionSupport": "SUPPORTED",
+              "defaultValue": "5000",
+              "role": "BEHAVIOUR",
+              "dslConfiguration": {
+                "allowsInlineDefinition": true,
+                "allowsReferences": true,
+                "allowTopLevelDefinition": false
+              },
+              "layoutModel": {
+                "password": false,
+                "text": false,
+                "query": false,
+                "order": 2
+              },
+              "allowedStereotypeModels": [],
+              "name": "closedRefreshPeriod",
+              "displayModel": {
+                "displayName": "Closed refresh period"
+              },
+              "description": "",
+              "modelProperties": {}
+            },
+            {
+              "type": {
+                "format": "java",
+                "type": "Number",
+                "annotations": {
+                  "classInformation": {
+                    "classname": "java.lang.Integer",
+                    "hasDefaultConstructor": false,
+                    "isInterface": false,
+                    "isInstantiable": false,
+                    "isAbstract": false,
+                    "isFinal": true,
+                    "implementedInterfaces": [
+                      "java.lang.Comparable"
+                    ],
+                    "parent": "java.lang.Number",
+                    "genericTypes": [],
+                    "isMap": false
+                  },
+                  "int": {}
+                }
+              },
+              "hasDynamicType": false,
+              "required": false,
+              "isConfigOverride": false,
+              "expressionSupport": "SUPPORTED",
+              "defaultValue": "5000",
+              "role": "BEHAVIOUR",
+              "dslConfiguration": {
+                "allowsInlineDefinition": true,
+                "allowsReferences": true,
+                "allowTopLevelDefinition": false
+              },
+              "layoutModel": {
+                "password": false,
+                "text": false,
+                "query": false,
+                "order": 3
+              },
+              "allowedStereotypeModels": [],
+              "name": "openPeriod",
+              "displayModel": {
+                "displayName": "Open period"
+              },
+              "description": "",
+              "modelProperties": {}
+            }
+          ],
+          "exclusiveParametersModels": [],
+          "layoutModel": {
+            "password": false,
+            "text": false,
+            "query": false,
+            "order": 1
+          },
+          "showInDsl": false,
+          "name": "CBConfig",
+          "description": "",
+          "modelProperties": {}
+        }
+      ],
+      "externalLibraryModels": [],
+      "operations": [],
+      "connectionProviders": [],
+      "messageSources": [],
+      "name": "config",
+      "description": "Default configuration",
+      "modelProperties": {}
+    }
+  ],
+  "operations": [],
+  "functions": [],
+  "constructs": [
+    {
+      "allowsTopLevelDefinition": false,
+      "nestedComponents": [
+        {
+          "minOccurs": 1,
+          "childComponents": [
+            {
+              "isRequired": true,
+              "allowedStereotypes": [
+                {
+                  "type": "PROCESSOR",
+                  "namespace": "MULE"
+                }
+              ],
+              "name": "processors",
+              "description": "",
+              "modelProperties": {},
+              "kind": "chain"
+            }
+          ],
+          "parameterGroupModels": [],
+          "name": "closedRoute",
+          "description": "",
+          "modelProperties": {},
+          "kind": "route"
+        },
+        {
+          "minOccurs": 1,
+          "childComponents": [
+            {
+              "isRequired": true,
+              "allowedStereotypes": [
+                {
+                  "type": "PROCESSOR",
+                  "namespace": "MULE"
+                }
+              ],
+              "name": "processors",
+              "description": "",
+              "modelProperties": {},
+              "kind": "chain"
+            }
+          ],
+          "parameterGroupModels": [],
+          "name": "openRoute",
+          "description": "",
+          "modelProperties": {},
+          "kind": "route"
+        }
+      ],
+      "errors": [],
+      "stereotype": {
+        "type": "PROCESSOR",
+        "namespace": "MULE"
+      },
+      "parameterGroupModels": [],
+      "name": "circuitBreaker",
+      "description": "",
+      "modelProperties": {},
+      "kind": "construct"
+    }
+  ],
+  "connectionProviders": [],
+  "messageSources": [],
+  "notifications": [],
+  "errors": [
+    {
+      "error": "CIRCUIT-BREAKER-SIMPLE:RETRY_EXHAUSTED",
+      "parent": "MULE:RETRY_EXHAUSTED",
+      "handleable": true
+    },
+    {
+      "error": "MULE:RETRY_EXHAUSTED",
+      "parent": "MULE:ANY",
+      "handleable": true
+    },
+    {
+      "error": "MULE:ANY",
+      "handleable": true
+    },
+    {
+      "error": "MULE:CONNECTIVITY",
+      "parent": "MULE:ANY",
+      "handleable": true
+    },
+    {
+      "error": "CIRCUIT-BREAKER-SIMPLE:CONNECTIVITY",
+      "parent": "MULE:CONNECTIVITY",
+      "handleable": true
+    }
+  ],
+  "modelProperties": {},
+  "types": []
+}

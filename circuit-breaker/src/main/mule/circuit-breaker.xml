@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:validation="http://www.mulesoft.org/schema/mule/validation" xmlns:os="http://www.mulesoft.org/schema/mule/os"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:circuit-breaker-simple="http://www.mulesoft.org/schema/mule/circuit-breaker-simple" xmlns:cb="http://www.mulesoft.org/schema/mule/cb" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/cb http://www.mulesoft.org/schema/mule/cb/current/mule-cb.xsd
+http://www.mulesoft.org/schema/mule/circuit-breaker-simple http://www.mulesoft.org/schema/mule/circuit-breaker-simple/current/mule-circuit-breaker-simple.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/current/mule-os.xsd
+http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mule/validation/current/mule-validation.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="f124f6da-1919-4068-bb3d-bdc1459f6b7b" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<os:object-store name="myOS" doc:name="Object store" doc:id="cb75862c-68d3-44b8-8a3a-faa11a8c9975" />
+	<circuit-breaker-simple:config name="Circuit_Breaker_Simple_Config" doc:name="Circuit Breaker Simple Config" doc:id="1b582526-2c8b-43b3-b5cd-a583840583d6" openPeriod="10000"/>
+	<flow name="circuit-breakerFlow" doc:id="ffaec4b6-897f-45ac-8cec-2467c7a2d6c4" >
+		<http:listener doc:name="Listener" doc:id="9e21f009-fc74-4f9e-a102-c2bf94305ed0" config-ref="HTTP_Listener_config" path="/test"/>
+		<circuit-breaker-simple:circuit-breaker doc:name="Circuit breaker" doc:id="ec15455d-8e1f-4014-8ed9-479bab39e39f" >
+			<circuit-breaker-simple:closed-route >
+				<logger level="INFO" doc:name="CLOSED" doc:id="e311214e-ccfc-4e6e-846e-ba9de5992794" message="CLOSED" />
+				<validation:is-true doc:name="Is true" doc:id="00e9a441-5390-444d-8027-c2fbcf452371" />
+			</circuit-breaker-simple:closed-route>
+			<circuit-breaker-simple:open-route >
+				<logger level="INFO" doc:name="OPEN" doc:id="c095246d-b71b-4b42-b371-ff78bca6b978" message="OPEN" />
+			</circuit-breaker-simple:open-route>
+		</circuit-breaker-simple:circuit-breaker>
+		<error-handler >
+			<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="49df9e6d-cba0-488a-8158-04118d327c8d" >
+				<logger level="INFO" doc:name="ERROR" doc:id="4149b5c5-ad8d-42b1-acd0-9ba16a87b678" message="VALIDATION ERROR"/>
+			</on-error-propagate>
+		</error-handler>
+	</flow>
+</mule>

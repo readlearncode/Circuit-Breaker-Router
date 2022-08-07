@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: circuit_breaker_simple.ModuleTestCase
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.11 s <<< FAILURE! - in circuit_breaker_simple.ModuleTestCase
+initializationError(circuit_breaker_simple.ModuleTestCase)  Time elapsed: 0.009 s  <<< ERROR!
+java.lang.IllegalArgumentException: pom file doesn't exits for path: G:\My%20Drive\Documents\AnypointStudio\workspaces%204\java-connectors\circuit_breaker_simple\pom.xml
+
