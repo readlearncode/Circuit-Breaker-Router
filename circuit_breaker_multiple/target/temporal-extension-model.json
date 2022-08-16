@@ -1,0 +1,312 @@
+{
+  "name": "Circuit Breaker",
+  "description": "This is the main class of an extension, is the entry point from which configurations, connection providers, operations and sources are going to be declared.",
+  "version": "2.0.3-SNAPSHOT",
+  "vendor": "Mulesoft",
+  "category": "COMMUNITY",
+  "xmlDsl": {
+    "prefix": "cb",
+    "namespace": "http://www.mulesoft.org/schema/mule/cb",
+    "schemaLocation": "http://www.mulesoft.org/schema/mule/cb/current/mule-cb.xsd",
+    "schemaVersion": "2.0.3-SNAPSHOT",
+    "xsdFileName": "mule-cb.xsd"
+  },
+  "resources": [],
+  "subTypes": [],
+  "privilegedPackages": [],
+  "privilegedArtifacts": [],
+  "externalLibraries": [],
+  "importedTypes": [],
+  "configurations": [
+    {
+      "stereotype": {
+        "type": "CONFIG",
+        "namespace": "CB",
+        "parent": {
+          "type": "MODULE_CONFIG",
+          "namespace": "MULE"
+        }
+      },
+      "parameterGroupModels": [],
+      "externalLibraryModels": [],
+      "operations": [],
+      "connectionProviders": [],
+      "messageSources": [],
+      "name": "config",
+      "description": "Default configuration",
+      "modelProperties": {}
+    }
+  ],
+  "operations": [],
+  "functions": [],
+  "constructs": [
+    {
+      "allowsTopLevelDefinition": false,
+      "nestedComponents": [
+        {
+          "minOccurs": 1,
+          "childComponents": [
+            {
+              "isRequired": true,
+              "allowedStereotypes": [
+                {
+                  "type": "PROCESSOR",
+                  "namespace": "MULE"
+                }
+              ],
+              "name": "processors",
+              "description": "",
+              "modelProperties": {},
+              "kind": "chain"
+            }
+          ],
+          "parameterGroupModels": [],
+          "name": "closedRoute",
+          "description": "",
+          "modelProperties": {},
+          "kind": "route"
+        },
+        {
+          "minOccurs": 1,
+          "childComponents": [
+            {
+              "isRequired": true,
+              "allowedStereotypes": [
+                {
+                  "type": "PROCESSOR",
+                  "namespace": "MULE"
+                }
+              ],
+              "name": "processors",
+              "description": "",
+              "modelProperties": {},
+              "kind": "chain"
+            }
+          ],
+          "parameterGroupModels": [],
+          "name": "openRoute",
+          "description": "",
+          "modelProperties": {},
+          "kind": "route"
+        }
+      ],
+      "errors": [],
+      "stereotype": {
+        "type": "PROCESSOR",
+        "namespace": "MULE"
+      },
+      "parameterGroupModels": [
+        {
+          "parameters": [
+            {
+              "type": {
+                "format": "java",
+                "type": "String"
+              },
+              "hasDynamicType": false,
+              "required": true,
+              "isConfigOverride": false,
+              "expressionSupport": "SUPPORTED",
+              "role": "BEHAVIOUR",
+              "dslConfiguration": {
+                "allowsInlineDefinition": true,
+                "allowsReferences": true,
+                "allowTopLevelDefinition": false
+              },
+              "layoutModel": {
+                "password": false,
+                "text": false,
+                "query": false
+              },
+              "allowedStereotypeModels": [],
+              "name": "circuitBreakerId",
+              "displayModel": {
+                "displayName": "Circuit Breaker Instance ID"
+              },
+              "description": "",
+              "modelProperties": {}
+            },
+            {
+              "type": {
+                "format": "java",
+                "type": "Number",
+                "annotations": {
+                  "classInformation": {
+                    "classname": "java.lang.Integer",
+                    "hasDefaultConstructor": false,
+                    "isInterface": false,
+                    "isInstantiable": false,
+                    "isAbstract": false,
+                    "isFinal": true,
+                    "implementedInterfaces": [
+                      "java.lang.Comparable"
+                    ],
+                    "parent": "java.lang.Number",
+                    "genericTypes": [],
+                    "isMap": false
+                  },
+                  "int": {}
+                }
+              },
+              "hasDynamicType": false,
+              "required": false,
+              "isConfigOverride": false,
+              "expressionSupport": "SUPPORTED",
+              "defaultValue": "2",
+              "role": "BEHAVIOUR",
+              "dslConfiguration": {
+                "allowsInlineDefinition": true,
+                "allowsReferences": true,
+                "allowTopLevelDefinition": false
+              },
+              "layoutModel": {
+                "password": false,
+                "text": false,
+                "query": false
+              },
+              "allowedStereotypeModels": [],
+              "name": "closedErrorThreshold",
+              "displayModel": {
+                "displayName": "Closed error threshold"
+              },
+              "description": "",
+              "modelProperties": {}
+            },
+            {
+              "type": {
+                "format": "java",
+                "type": "Number",
+                "annotations": {
+                  "classInformation": {
+                    "classname": "java.lang.Integer",
+                    "hasDefaultConstructor": false,
+                    "isInterface": false,
+                    "isInstantiable": false,
+                    "isAbstract": false,
+                    "isFinal": true,
+                    "implementedInterfaces": [
+                      "java.lang.Comparable"
+                    ],
+                    "parent": "java.lang.Number",
+                    "genericTypes": [],
+                    "isMap": false
+                  },
+                  "int": {}
+                }
+              },
+              "hasDynamicType": false,
+              "required": false,
+              "isConfigOverride": false,
+              "expressionSupport": "SUPPORTED",
+              "defaultValue": "5000",
+              "role": "BEHAVIOUR",
+              "dslConfiguration": {
+                "allowsInlineDefinition": true,
+                "allowsReferences": true,
+                "allowTopLevelDefinition": false
+              },
+              "layoutModel": {
+                "password": false,
+                "text": false,
+                "query": false
+              },
+              "allowedStereotypeModels": [],
+              "name": "closedRefreshPeriod",
+              "displayModel": {
+                "displayName": "Closed refresh period"
+              },
+              "description": "",
+              "modelProperties": {}
+            },
+            {
+              "type": {
+                "format": "java",
+                "type": "Number",
+                "annotations": {
+                  "classInformation": {
+                    "classname": "java.lang.Integer",
+                    "hasDefaultConstructor": false,
+                    "isInterface": false,
+                    "isInstantiable": false,
+                    "isAbstract": false,
+                    "isFinal": true,
+                    "implementedInterfaces": [
+                      "java.lang.Comparable"
+                    ],
+                    "parent": "java.lang.Number",
+                    "genericTypes": [],
+                    "isMap": false
+                  },
+                  "int": {}
+                }
+              },
+              "hasDynamicType": false,
+              "required": false,
+              "isConfigOverride": false,
+              "expressionSupport": "SUPPORTED",
+              "defaultValue": "5000",
+              "role": "BEHAVIOUR",
+              "dslConfiguration": {
+                "allowsInlineDefinition": true,
+                "allowsReferences": true,
+                "allowTopLevelDefinition": false
+              },
+              "layoutModel": {
+                "password": false,
+                "text": false,
+                "query": false
+              },
+              "allowedStereotypeModels": [],
+              "name": "openPeriod",
+              "displayModel": {
+                "displayName": "Open period"
+              },
+              "description": "",
+              "modelProperties": {}
+            }
+          ],
+          "exclusiveParametersModels": [],
+          "showInDsl": false,
+          "name": "General",
+          "description": "",
+          "modelProperties": {}
+        }
+      ],
+      "name": "circuitBreaker",
+      "description": "",
+      "modelProperties": {},
+      "kind": "construct"
+    }
+  ],
+  "connectionProviders": [],
+  "messageSources": [],
+  "notifications": [],
+  "errors": [
+    {
+      "error": "CB:CONNECTIVITY",
+      "parent": "MULE:CONNECTIVITY",
+      "handleable": true
+    },
+    {
+      "error": "MULE:CONNECTIVITY",
+      "parent": "MULE:ANY",
+      "handleable": true
+    },
+    {
+      "error": "MULE:ANY",
+      "handleable": true
+    },
+    {
+      "error": "CB:RETRY_EXHAUSTED",
+      "parent": "MULE:RETRY_EXHAUSTED",
+      "handleable": true
+    },
+    {
+      "error": "MULE:RETRY_EXHAUSTED",
+      "parent": "MULE:ANY",
+      "handleable": true
+    }
+  ],
+  "modelProperties": {},
+  "types": []
+}
